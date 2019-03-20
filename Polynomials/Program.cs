@@ -10,10 +10,7 @@ namespace Polynomials
   {
     static void Main(string[] args)
     {
-      int[] coefficients = { -2, 0, 5, -10 };
-      var poly = new Polynomial(coefficients);
-      poly.print();
-      poly.derivative().print();
+      PolynomialTest.DerivativeAndPrintTest();
       Console.ReadKey();
     }
   }
