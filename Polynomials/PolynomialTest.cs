@@ -15,7 +15,7 @@ namespace Polynomials
     {
       Console.WriteLine("########## PART 5 ############");
       Console.WriteLine();
-      int[] coefficientsOne = { -2, 0, 5, -10 };
+      int[] coefficientsOne = { 4, -5, 1 };
       var polyOne = new Polynomial(coefficientsOne);
       Console.Write("Polynomial: ");
       polyOne.print();
@@ -23,7 +23,7 @@ namespace Polynomials
       polyOne.derivative().print();
 
 
-      int[] coefficientsTwo = { 5, -2, 16 };
+      int[] coefficientsTwo = { 1, 1, 0, 1 };
       var polyTwo = new Polynomial(coefficientsOne);
       Console.Write("Polynomial: ");
       polyTwo.print();
