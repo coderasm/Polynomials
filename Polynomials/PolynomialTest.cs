@@ -44,7 +44,9 @@ namespace Polynomials
       Console.Write("Polynomial 2: ");
       polyTwo.print();
       Console.Write("Sum: ");
-      polyOne.Add(polyTwo).print();
+      polyOne.Sum(polyTwo).print();
+      Console.Write("Difference: ");
+      polyOne.Difference(polyTwo).print();
 
       coefficientsOne = new int[] { 4, -5, 1 };
       coefficientsTwo = new int[] { 4, -5, -1 };
@@ -55,7 +57,9 @@ namespace Polynomials
       Console.Write("Polynomial 2: ");
       polyTwo.print();
       Console.Write("Sum: ");
-      polyOne.Add(polyTwo).print();
+      polyOne.Sum(polyTwo).print();
+      Console.Write("Difference: ");
+      polyOne.Difference(polyTwo).print();
     }
   }
 }
