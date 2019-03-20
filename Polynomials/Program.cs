@@ -10,12 +10,11 @@ namespace Polynomials
   {
     static void Main(string[] args)
     {
-      // The code provided will print ‘Hello World’ to the console.
-      // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-      Console.WriteLine("Hello World!");
+      int[] coefficients = { -2, 0, 5, -10 };
+      var poly = new Polynomial(coefficients);
+      poly.print();
+      poly.derivative().print();
       Console.ReadKey();
-
-      // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
     }
   }
 }
