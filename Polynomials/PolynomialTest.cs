@@ -30,5 +30,32 @@ namespace Polynomials
       Console.Write("Derivative: ");
       polyTwo.derivative().print();
     }
+
+    public static void AddAndPrintTest()
+    {
+      Console.WriteLine("########## PART 6 ############");
+      Console.WriteLine();
+      int[] coefficientsOne = { 4, -5, 1, 0 };
+      int[] coefficientsTwo = { 1, 1, 0, 1 };
+      var polyOne = new Polynomial(coefficientsOne);
+      var polyTwo = new Polynomial(coefficientsTwo);
+      Console.Write("Polynomial 1: ");
+      polyOne.print();
+      Console.Write("Polynomial 2: ");
+      polyTwo.print();
+      Console.Write("Sum: ");
+      polyOne.Add(polyTwo).print();
+
+      coefficientsOne = new int[] { 4, -5, 1 };
+      coefficientsTwo = new int[] { 4, -5, -1 };
+      polyOne = new Polynomial(coefficientsOne);
+      polyTwo = new Polynomial(coefficientsTwo);
+      Console.Write("Polynomial 1: ");
+      polyOne.print();
+      Console.Write("Polynomial 2: ");
+      polyTwo.print();
+      Console.Write("Sum: ");
+      polyOne.Add(polyTwo).print();
+    }
   }
 }

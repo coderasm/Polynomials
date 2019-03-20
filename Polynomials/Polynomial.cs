@@ -26,6 +26,17 @@ namespace Polynomials
       return new Polynomial(derivative);
     }
 
+    public Polynomial Add(Polynomial polynomial)
+    {
+      var length = coefficients.Length;
+      int[] summedCoefficients = new int[length];
+      for (int i = 0; i < coefficients.Length; i++)
+      {
+        summedCoefficients[i] = coefficients[i] + polynomial.coefficients[i];
+      }
+      return new Polynomial(summedCoefficients);
+    }
+
     public string print()
     {
       var polynomial = "";
