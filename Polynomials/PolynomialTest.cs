@@ -13,6 +13,8 @@ namespace Polynomials
   {
     public static void DerivativeAndPrintTest()
     {
+      Console.WriteLine("########## PART 5 ############");
+      Console.WriteLine();
       int[] coefficientsOne = { -2, 0, 5, -10 };
       var polyOne = new Polynomial(coefficientsOne);
       Console.Write("Polynomial: ");
