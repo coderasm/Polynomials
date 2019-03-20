@@ -31,7 +31,7 @@ namespace Polynomials
       polyTwo.derivative().print();
     }
 
-    public static void AddAndPrintTest()
+    public static void AddDiffPrintTest()
     {
       Console.WriteLine("########## PART 6 ############");
       Console.WriteLine();

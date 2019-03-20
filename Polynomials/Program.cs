@@ -10,7 +10,7 @@ namespace Polynomials
   {
     static void Main(string[] args)
     {
-      PolynomialTest.AddAndPrintTest();
+      PolynomialTest.AddDiffPrintTest();
       Console.ReadKey();
     }
   }
