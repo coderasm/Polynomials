@@ -63,21 +63,28 @@ namespace Polynomials
           //No space if leading coefficient is negative
           else if (coefficients[i] < 0 && i == coefficients.Length - 1)
             sign = "";
+          var coefficient = coefficients[i].ToString();
+          if (coefficients[i] == -1)
+            coefficient = "-";
+          if (coefficients[i] == 1 && i != 0)
+            coefficient = "";
           switch (i)
           {
             case 0:
-              polynomial += sign + coefficients[i];
+              polynomial += sign + coefficient;
               break;
             case 1:
-              polynomial += sign + coefficients[i] + "x";
+              polynomial += sign + coefficient + "x";
               break;
             default:
-              polynomial += sign + coefficients[i] + "x^" + i;
+              polynomial += sign + coefficient + "x^" + i;
               break;
           }
         }
       }
-      Console.WriteLine(polynomial);
+      //trim off any leading spaces and plus signs
+      var toTrim = new char[] { ' ', '+' };
+      Console.WriteLine(polynomial.TrimStart(toTrim));
       return polynomial;
     }
   }
