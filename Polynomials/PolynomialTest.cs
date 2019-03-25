@@ -11,6 +11,35 @@ namespace Polynomials
      */
   class PolynomialTest
   {
+    public static void ProductTest()
+    {
+      int[] coefficientOne = { 1, 1, 1 };
+      var polyOne = new Polynomial(coefficientOne);
+      int[] coefficientTwo = { 1, 1, 0 };
+      var polyTwo = new Polynomial(coefficientTwo);
+      int[] coefficientThree = { 3, 2, 0, 4};
+      var polyThree = new Polynomial(coefficientThree);
+      int[] coefficientFour = { 0, 3, 2, 0 };
+      var polyFour = new Polynomial(coefficientFour);
+      Console.Write("Polynomial 1: ");
+      polyOne.print();
+      Console.Write("Polynomial 2: ");
+      polyTwo.print();
+      Console.Write("Product: ");
+      polyOne.product(polyTwo).print();
+      Console.Write("Polynomial 3: ");
+      polyThree.print();
+      Console.Write("Polynomial 4: ");
+      polyFour.print();
+      Console.Write("Product: ");
+      polyThree.product(polyFour).print();
+    }
+
+    public static void DivisionTest()
+    {
+
+    }
+
     public static void DerivativeAndPrintTest()
     {
       Console.WriteLine("########## PART 5 ############");

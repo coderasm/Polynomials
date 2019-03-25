@@ -48,6 +48,29 @@ namespace Polynomials
       return new Polynomial(subtracted);
     }
 
+    public Polynomial product(Polynomial polynomial)
+    {
+      var newLength = (coefficients.Length - 1) * 2 + 1;
+      var multiplied = new int[newLength];
+      for (int i = 0; i < coefficients.Length; i++)
+      {
+        var coefficientOne = coefficients[i];
+        for (int j = 0; j < polynomial.coefficients.Length; j++)
+        {
+          var coefficientTwo = polynomial.coefficients[j];
+          multiplied[i + j] = multiplied[i + j] + coefficientOne * coefficientTwo;
+        }
+      }
+      return new Polynomial(multiplied);
+    }
+
+    public Polynomial divide(Polynomial polynomial)
+    {
+      var newLength = coefficients.Length;
+      var divided = new int[newLength];
+      return new Polynomial(divided);
+    }
+
     public string print()
     {
       var polynomial = "";
