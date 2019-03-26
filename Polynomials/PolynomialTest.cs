@@ -66,10 +66,13 @@ namespace Polynomials
       var coeffientsTwo = new int[] { 2, -3, 1 };
       var polyTwo = new Polynomial(coeffientsTwo);
       double rootTwoGuess = 0;
+      double rootThreeGuess = 3;
       var rootOne = polyOne.FindEstimateRoot(rootOneGuess);
       Console.WriteLine(polyOne.ToString() + $", Initial root guess: {rootOneGuess}, Final root: " + (rootOne.Exists ? rootOne.Root.ToString() : "not found"));
       var rootTwo = polyTwo.FindEstimateRoot(rootTwoGuess);
       Console.WriteLine(polyTwo.ToString() + $", Initial root guess: {rootTwoGuess}, Final root: " + (rootTwo.Exists ? rootTwo.Root.ToString() : "not found"));
+      var rootThree = polyTwo.FindEstimateRoot(rootThreeGuess);
+      Console.WriteLine(polyTwo.ToString() + $", Initial root guess: {rootThreeGuess}, Final root: " + (rootThree.Exists ? rootThree.Root.ToString() : "not found"));
     }
 
     public static void DerivativeAndPrintTest()
