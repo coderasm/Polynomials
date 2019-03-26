@@ -13,6 +13,7 @@ namespace Polynomials
   {
     public static void ProductTest()
     {
+      Console.WriteLine("########## PART 2 ############");
       int[] coefficientOne = { 1, 1, 1 };
       var polyOne = new Polynomial(coefficientOne);
       int[] coefficientTwo = { 1, 1, 0 };
@@ -27,10 +28,12 @@ namespace Polynomials
       Console.WriteLine("Polynomial 3: " + polyThree.ToString());
       Console.WriteLine("Polynomial 4: " + polyFour.ToString());
       Console.WriteLine("Product: " + polyThree.Product(polyFour).ToString());
+      Console.WriteLine();
     }
 
     public static void DivisionTest()
     {
+      Console.WriteLine("########## PART 3 ############");
       var coeffientsOne = new int[] { 1, 1, 0, 1 };
       var polyOne = new Polynomial(coeffientsOne);
       var coeffientsTwo = new int[] { 1, 1 };
@@ -56,10 +59,12 @@ namespace Polynomials
       var remainderThree = divisionResultThree[1].GreatestPower() >= 0 ? divisionResultThree[1].ToString() : "0";
       Console.WriteLine("(" + polyFive.ToString() + ") / (" + polySix.ToString() + ") = " + divisionResultThree[0].ToString() + " Remainder: " + remainderThree);
       Console.WriteLine("(" + polySix.ToString() + ") * (" + divisionResultThree[0] + ") + " + divisionResultThree[1] + " = " + polySix.Product(divisionResultThree[0]).Sum(divisionResultThree[1]));
+      Console.WriteLine();
     }
 
     public static void NewtonRaphsonRootTest()
     {
+      Console.WriteLine("########## PART 4 ############");
       var coeffientsOne = new int[] { 1, 1, 0, 1 };
       var polyOne = new Polynomial(coeffientsOne);
       double rootOneGuess = -1;
@@ -73,6 +78,21 @@ namespace Polynomials
       Console.WriteLine(polyTwo.ToString() + $", Initial root guess: {rootTwoGuess}, Final root: " + (rootTwo.Exists ? rootTwo.Root.ToString() : "not found"));
       var rootThree = polyTwo.FindEstimateRoot(rootThreeGuess);
       Console.WriteLine(polyTwo.ToString() + $", Initial root guess: {rootThreeGuess}, Final root: " + (rootThree.Exists ? rootThree.Root.ToString() : "not found"));
+      Console.WriteLine();
+    }
+
+    public static void HornersMethodTest()
+    {
+      Console.WriteLine("########## PART 5 ############");
+      var coeffientsOne = new int[] { -1, 2, -6, 2 };
+      var valueToApplyOne = 3;
+      var polyOne = new Polynomial(coeffientsOne);
+      Console.WriteLine(polyOne.ToString() + $" where x = {valueToApplyOne} is " + polyOne.ApplyWithHorner(valueToApplyOne));
+      var coeffientsTwo = new int[] { 1, 1, 1 };
+      var valueToApplyTwo = 1;
+      var polyTwo = new Polynomial(coeffientsTwo);
+      Console.WriteLine(polyTwo.ToString() + $" where x = {valueToApplyTwo} is " + polyTwo.ApplyWithHorner(valueToApplyTwo));
+      Console.WriteLine();
     }
 
     public static void DerivativeAndPrintTest()

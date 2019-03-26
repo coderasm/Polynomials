@@ -119,6 +119,17 @@ namespace Polynomials
       return new NewTonRaphsonRoot();
     }
 
+    public int ApplyWithHorner(int value)
+    {
+      var lastCoefficient = coefficients[coefficients.Length - 1];
+      //synthetic division which uses horner's method
+      for (int i = coefficients.Length - 2; i >= 0; i--)
+      {
+        lastCoefficient = lastCoefficient * value + coefficients[i];
+      }
+      return lastCoefficient;
+    }
+
     private double ApplyValue(double value)
     {
       double total = 0;

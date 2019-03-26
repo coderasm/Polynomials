@@ -14,6 +14,7 @@ namespace Polynomials
       PolynomialTest.ProductTest();
       PolynomialTest.DivisionTest();
       PolynomialTest.NewtonRaphsonRootTest();
+      PolynomialTest.HornersMethodTest();
       Console.ReadKey();
     }
   }
