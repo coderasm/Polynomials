@@ -13,6 +13,7 @@ namespace Polynomials
       //PolynomialTest.AddDiffPrintTest();
       PolynomialTest.ProductTest();
       PolynomialTest.DivisionTest();
+      PolynomialTest.NewtonRaphsonRootTest();
       Console.ReadKey();
     }
   }

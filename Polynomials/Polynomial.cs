@@ -94,6 +94,40 @@ namespace Polynomials
       return new Polynomial[] { quotient, dividend };
     }
 
+    public NewTonRaphsonRoot FindEstimateRoot(double initialDomainValue)
+    {
+      var MIN_DOMAIN_DIFF = Math.Pow(10, -7);
+      var MAX_FROM_ZERO = .0625;
+      var firstRangeValue = ApplyValue(initialDomainValue);
+      if (Math.Abs(firstRangeValue) <= MAX_FROM_ZERO)
+        return new NewTonRaphsonRoot(initialDomainValue);
+      double domainDifference = 1;
+      var counter = 0;
+      var derivative = Derivative();
+      var currentDomainValue = initialDomainValue;
+      while (domainDifference > MIN_DOMAIN_DIFF && counter <= 50)
+      {
+        var newDomainValue = currentDomainValue - (ApplyValue(currentDomainValue) / derivative.ApplyValue(currentDomainValue));
+        var rangeValue = ApplyValue(newDomainValue);
+        if (Math.Abs(rangeValue) <= MAX_FROM_ZERO)
+          return new NewTonRaphsonRoot(newDomainValue);
+        domainDifference = Math.Abs(currentDomainValue - newDomainValue);
+        currentDomainValue = newDomainValue;
+        counter++;
+      }
+      return new NewTonRaphsonRoot();
+    }
+
+    private double ApplyValue(double value)
+    {
+      double total = 0;
+      for (int i = 0; i < coefficients.Length; i++)
+      {
+        total += coefficients[i] * Math.Pow(value, i);
+      }
+      return total;
+    }
+
     public int GreatestPower()
     {
       for (int i = coefficients.Length - 1; i >= 0; i--)
@@ -167,6 +201,22 @@ namespace Polynomials
       var toTrim = new char[] { ' ', '+' };
       polynomial = polynomial.TrimStart(toTrim);
       return polynomial;
+    }
+
+    public class NewTonRaphsonRoot
+    {
+      public bool Exists { get; set; }
+      public double Root { get; set; }
+
+      public NewTonRaphsonRoot()
+      {
+        Exists = false;
+      }
+      public NewTonRaphsonRoot(double Root)
+      {
+        Exists = true;
+        this.Root = Root;
+      }
     }
   }
 }

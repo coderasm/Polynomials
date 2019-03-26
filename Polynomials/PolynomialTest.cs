@@ -58,6 +58,20 @@ namespace Polynomials
       Console.WriteLine("(" + polySix.ToString() + ") * (" + divisionResultThree[0] + ") + " + divisionResultThree[1] + " = " + polySix.Product(divisionResultThree[0]).Sum(divisionResultThree[1]));
     }
 
+    public static void NewtonRaphsonRootTest()
+    {
+      var coeffientsOne = new int[] { 1, 1, 0, 1 };
+      var polyOne = new Polynomial(coeffientsOne);
+      double rootOneGuess = -1;
+      var coeffientsTwo = new int[] { 2, -3, 1 };
+      var polyTwo = new Polynomial(coeffientsTwo);
+      double rootTwoGuess = 0;
+      var rootOne = polyOne.FindEstimateRoot(rootOneGuess);
+      Console.WriteLine(polyOne.ToString() + $", Initial root guess: {rootOneGuess}, Final root: " + (rootOne.Exists ? rootOne.Root.ToString() : "not found"));
+      var rootTwo = polyTwo.FindEstimateRoot(rootTwoGuess);
+      Console.WriteLine(polyTwo.ToString() + $", Initial root guess: {rootTwoGuess}, Final root: " + (rootTwo.Exists ? rootTwo.Root.ToString() : "not found"));
+    }
+
     public static void DerivativeAndPrintTest()
     {
       Console.WriteLine("########## PART 5 ############");
