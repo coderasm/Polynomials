@@ -98,6 +98,7 @@ namespace Polynomials
     {
       var MIN_DOMAIN_DIFF = Math.Pow(10, -7);
       var MAX_FROM_ZERO = .0625;
+      var MAX_ATTEMPTS = 50;
       var firstRangeValue = ApplyValue(initialDomainValue);
       if (Math.Abs(firstRangeValue) <= MAX_FROM_ZERO)
         return new NewTonRaphsonRoot(initialDomainValue);
@@ -105,7 +106,7 @@ namespace Polynomials
       var counter = 0;
       var derivative = Derivative();
       var currentDomainValue = initialDomainValue;
-      while (domainDifference > MIN_DOMAIN_DIFF && counter <= 50)
+      while (domainDifference > MIN_DOMAIN_DIFF && counter <= MAX_ATTEMPTS)
       {
         var newDomainValue = currentDomainValue - (ApplyValue(currentDomainValue) / derivative.ApplyValue(currentDomainValue));
         var rangeValue = ApplyValue(newDomainValue);
