@@ -83,8 +83,12 @@ namespace Polynomials
         var quotientCoefficient = new int[newLength];
         quotientCoefficient[powerNeeded] = coefficientNeeded;
         var partialQuotient = new Polynomial(quotientCoefficient);
+        //add onto the quotient
         quotient = quotient.Sum(partialQuotient);
+        //multiply new quotient into divisor and subtract from current
+        //dividend for new dividend
         dividend = dividend.Difference(polynomial.Product(partialQuotient));
+        //calculate top power of new dividend.
         dividendGreatestPower = dividend.GreatestPower();
       }
       return new Polynomial[] { quotient, dividend };
