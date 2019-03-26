@@ -13,7 +13,7 @@ namespace Polynomials
       deg = coefficients.Length - 1;
     }
 
-    public Polynomial derivative()
+    public Polynomial Derivative()
     {
       int[] derivative = new int[coefficients.Length - 1];
       for (int i = 0; i < coefficients.Length; i++)
@@ -28,13 +28,14 @@ namespace Polynomials
 
     public Polynomial Sum(Polynomial polynomial)
     {
-      var length = coefficients.Length;
-      int[] summedCoefficients = new int[length];
-      for (int i = 0; i < coefficients.Length; i++)
+      var longer = coefficients.Length > polynomial.coefficients.Length ? this : polynomial;
+      var shorter = longer == this ? polynomial : this;
+      var clonedLonger = longer.Clone();
+      for (int i = 0; i < shorter.coefficients.Length; i++)
       {
-        summedCoefficients[i] = coefficients[i] + polynomial.coefficients[i];
+        clonedLonger.coefficients[i] = clonedLonger.coefficients[i] + shorter.coefficients[i];
       }
-      return new Polynomial(summedCoefficients);
+      return clonedLonger;
     }
 
     public Polynomial Difference(Polynomial polynomial)
@@ -48,9 +49,9 @@ namespace Polynomials
       return new Polynomial(subtracted);
     }
 
-    public Polynomial product(Polynomial polynomial)
+    public Polynomial Product(Polynomial polynomial)
     {
-      var newLength = (coefficients.Length - 1) * 2 + 1;
+      var newLength = coefficients.Length + polynomial.coefficients.Length;
       var multiplied = new int[newLength];
       for (int i = 0; i < coefficients.Length; i++)
       {
@@ -64,14 +65,67 @@ namespace Polynomials
       return new Polynomial(multiplied);
     }
 
-    public Polynomial divide(Polynomial polynomial)
+    public Polynomial[] Divide(Polynomial polynomial)
     {
       var newLength = coefficients.Length;
-      var divided = new int[newLength];
-      return new Polynomial(divided);
+      var quotient = new Polynomial(new int[newLength]);
+      var dividend = this;
+      var divisorGreatestPower = polynomial.GreatestPower();
+      var dividendGreatestPower = dividend.GreatestPower();
+      //only divide if divisable
+      while (dividendGreatestPower >= divisorGreatestPower)
+      {
+        var powerNeeded = dividendGreatestPower - divisorGreatestPower;
+        var coefficientNeeded = dividend.coefficients[dividendGreatestPower] / polynomial.coefficients[divisorGreatestPower];
+        //correct sign
+        coefficientNeeded = dividend.coefficients[dividendGreatestPower] > 0 ? Math.Abs(coefficientNeeded) : -1 * Math.Abs(coefficientNeeded);
+        //build new polynomial
+        var quotientCoefficient = new int[newLength];
+        quotientCoefficient[powerNeeded] = coefficientNeeded;
+        var partialQuotient = new Polynomial(quotientCoefficient);
+        quotient = quotient.Sum(partialQuotient);
+        dividend = dividend.Difference(polynomial.Product(partialQuotient));
+        dividendGreatestPower = dividend.GreatestPower();
+      }
+      return new Polynomial[] { quotient, dividend };
     }
 
-    public string print()
+    public int GreatestPower()
+    {
+      for (int i = coefficients.Length - 1; i >= 0; i--)
+      {
+        if (coefficients[i] != 0)
+        {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    private Polynomial Clone()
+    {
+      var length = coefficients.Length;
+      var zero = new int[length];
+      for (int i = 0; i < length; i++)
+      {
+        zero[i] = coefficients[i];
+      }
+      return new Polynomial(zero);
+    }
+
+    public bool Equals(Polynomial polynomial)
+    {
+      if (coefficients.Length != polynomial.coefficients.Length)
+        return false;
+      for (int i = 0; i < coefficients.Length; i++)
+      {
+        if (coefficients[i] != polynomial.coefficients[i])
+          return false;
+      }
+      return true;
+    }
+
+    public override string ToString()
     {
       var polynomial = "";
       for (int i = coefficients.Length - 1; i >= 0; i--)
@@ -87,7 +141,7 @@ namespace Polynomials
           else if (coefficients[i] < 0 && i == coefficients.Length - 1)
             sign = "";
           var coefficient = coefficients[i].ToString();
-          if (coefficients[i] == -1)
+          if (coefficients[i] == -1 && i != 0)
             coefficient = "-";
           if (coefficients[i] == 1 && i != 0)
             coefficient = "";
@@ -107,7 +161,7 @@ namespace Polynomials
       }
       //trim off any leading spaces and plus signs
       var toTrim = new char[] { ' ', '+' };
-      Console.WriteLine(polynomial.TrimStart(toTrim));
+      polynomial = polynomial.TrimStart(toTrim);
       return polynomial;
     }
   }

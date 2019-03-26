@@ -21,23 +21,41 @@ namespace Polynomials
       var polyThree = new Polynomial(coefficientThree);
       int[] coefficientFour = { 0, 3, 2, 0 };
       var polyFour = new Polynomial(coefficientFour);
-      Console.Write("Polynomial 1: ");
-      polyOne.print();
-      Console.Write("Polynomial 2: ");
-      polyTwo.print();
-      Console.Write("Product: ");
-      polyOne.product(polyTwo).print();
-      Console.Write("Polynomial 3: ");
-      polyThree.print();
-      Console.Write("Polynomial 4: ");
-      polyFour.print();
-      Console.Write("Product: ");
-      polyThree.product(polyFour).print();
+      Console.WriteLine("Polynomial 1: " + polyOne.ToString());
+      Console.WriteLine("Polynomial 2: " + polyTwo.ToString());
+      Console.WriteLine("Product: " + polyOne.Product(polyTwo).ToString());
+      Console.WriteLine("Polynomial 3: " + polyThree.ToString());
+      Console.WriteLine("Polynomial 4: " + polyFour.ToString());
+      Console.WriteLine("Product: " + polyThree.Product(polyFour).ToString());
     }
 
     public static void DivisionTest()
     {
+      var coeffientsOne = new int[] { 1, 1, 0, 1 };
+      var polyOne = new Polynomial(coeffientsOne);
+      var coeffientsTwo = new int[] { 1, 1 };
+      var polyTwo = new Polynomial(coeffientsTwo);
+      var coeffientsThree = new int[] { 1, 1, 0, 0, 0, 1 };
+      var polyThree = new Polynomial(coeffientsThree);
+      var coeffientsFour = new int[] { 1, 1, 1 };
+      var polyFour = new Polynomial(coeffientsFour);
+      var coeffientsFive = new int[] { 1, 1, 1, 0, 0, 1, 0, 1 };
+      var polyFive = new Polynomial(coeffientsFive);
+      var coeffientsSix = new int[] { 1, 0, 1, 0, 1 };
+      var polySix = new Polynomial(coeffientsSix);
 
+      var divisionResultOne = polyOne.Divide(polyTwo);
+      var remainderOne = divisionResultOne[1].GreatestPower() >= 0 ? divisionResultOne[1].ToString() : "0";
+      Console.WriteLine("(" + polyOne.ToString() + ") / (" + polyTwo.ToString() + ") = " + divisionResultOne[0].ToString() + " Remainder: " + remainderOne);
+      Console.WriteLine("(" + polyTwo.ToString() + ") * (" + divisionResultOne[0] + ") + " + divisionResultOne[1] + " = " + polyTwo.Product(divisionResultOne[0]).Sum(divisionResultOne[1]));
+      var divisionResultTwo = polyThree.Divide(polyFour);
+      var remainderTwo = divisionResultTwo[1].GreatestPower() >= 0 ? divisionResultTwo[1].ToString() : "0";
+      Console.WriteLine("(" + polyThree.ToString() + ") / (" + polyFour.ToString() + ") = " + divisionResultTwo[0].ToString() + " Remainder: " + remainderTwo);
+      Console.WriteLine("(" + polyFour.ToString() + ") * (" + divisionResultTwo[0] + ") + " + divisionResultTwo[1] + " = " + polyFour.Product(divisionResultTwo[0]).Sum(divisionResultTwo[1]));
+      var divisionResultThree = polyFive.Divide(polySix);
+      var remainderThree = divisionResultThree[1].GreatestPower() >= 0 ? divisionResultThree[1].ToString() : "0";
+      Console.WriteLine("(" + polyFive.ToString() + ") / (" + polySix.ToString() + ") = " + divisionResultThree[0].ToString() + " Remainder: " + remainderThree);
+      Console.WriteLine("(" + polySix.ToString() + ") * (" + divisionResultThree[0] + ") + " + divisionResultThree[1] + " = " + polySix.Product(divisionResultThree[0]).Sum(divisionResultThree[1]));
     }
 
     public static void DerivativeAndPrintTest()
@@ -47,17 +65,17 @@ namespace Polynomials
       int[] coefficientsOne = { 4, -5, 1 };
       var polyOne = new Polynomial(coefficientsOne);
       Console.Write("Polynomial: ");
-      polyOne.print();
+      polyOne.ToString();
       Console.Write("Derivative: ");
-      polyOne.derivative().print();
+      polyOne.Derivative().ToString();
 
 
       int[] coefficientsTwo = { 1, 1, 0, 1 };
       var polyTwo = new Polynomial(coefficientsOne);
       Console.Write("Polynomial: ");
-      polyTwo.print();
+      polyTwo.ToString();
       Console.Write("Derivative: ");
-      polyTwo.derivative().print();
+      polyTwo.Derivative().ToString();
     }
 
     public static void AddDiffPrintTest()
@@ -69,26 +87,26 @@ namespace Polynomials
       var polyOne = new Polynomial(coefficientsOne);
       var polyTwo = new Polynomial(coefficientsTwo);
       Console.Write("Polynomial 1: ");
-      polyOne.print();
+      polyOne.ToString();
       Console.Write("Polynomial 2: ");
-      polyTwo.print();
+      polyTwo.ToString();
       Console.Write("Sum: ");
-      polyOne.Sum(polyTwo).print();
+      polyOne.Sum(polyTwo).ToString();
       Console.Write("Difference: ");
-      polyOne.Difference(polyTwo).print();
+      polyOne.Difference(polyTwo).ToString();
 
       coefficientsOne = new int[] { 4, -5, 1 };
       coefficientsTwo = new int[] { 4, -5, -1 };
       polyOne = new Polynomial(coefficientsOne);
       polyTwo = new Polynomial(coefficientsTwo);
       Console.Write("Polynomial 1: ");
-      polyOne.print();
+      polyOne.ToString();
       Console.Write("Polynomial 2: ");
-      polyTwo.print();
+      polyTwo.ToString();
       Console.Write("Sum: ");
-      polyOne.Sum(polyTwo).print();
+      polyOne.Sum(polyTwo).ToString();
       Console.Write("Difference: ");
-      polyOne.Difference(polyTwo).print();
+      polyOne.Difference(polyTwo).ToString();
     }
   }
 }
